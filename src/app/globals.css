@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-plex-sans);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-plex-mono);
+
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-muted-2: var(--muted-2);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-good: var(--good);
+}
+
+:root {
+  --bg: #0a0e1a;
+  --panel: #111729;
+  --panel-2: #151c33;
+  --line: #232c45;
+  --line-soft: #1a2238;
+  --text: #edeff4;
+  --muted: #8089a0;
+  --muted-2: #5d6580;
+  --accent: #d7a052;
+  --accent-soft: #8a6a39;
+  --good: #6fae8f;
+}
+
+[data-theme="light"] {
+  --bg: #f6f4ee;
+  --panel: #ffffff;
+  --panel-2: #fbf9f3;
+  --line: #ddd7c6;
+  --line-soft: #e8e3d4;
+  --text: #1c2030;
+  --muted: #5b6275;
+  --muted-2: #8a8f9d;
+  --accent: #a86a26;
+  --accent-soft: #c79a5c;
+  --good: #3d7a5c;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  line-height: 1.55;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: linear-gradient(var(--line-soft) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-soft) 1px, transparent 1px);
+  background-size: 64px 64px;
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.schem-line {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+.schem-line-live {
+  stroke: var(--accent-soft);
+  stroke-width: 1;
+  stroke-dasharray: 4 5;
+  animation: schem-dash 18s linear infinite;
+}
+@keyframes schem-dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+.schem-node circle {
+  transition: stroke 0.25s, fill 0.25s;
+}
+.schem-node:hover circle {
+  stroke: var(--accent);
+  fill: var(--panel-2);
+}
+.schem-node:hover text {
+  fill: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
