@@ -14,7 +14,7 @@ export function Nav() {
     <header className="sticky top-0 z-50 backdrop-blur border-b border-line bg-bg/85">
       <div className="max-w-[1100px] mx-auto px-7 py-4 flex items-center justify-between">
         <Link href="/" className="font-display font-semibold text-[16px]">
-          {site.shortName.toUpperCase()}<span className="text-accent">.RS</span>
+          {site.navMark.monogram}<span className="text-accent"> · {site.navMark.suffix}</span>
         </Link>
         <nav className="hidden sm:flex items-center gap-7 text-[13px] text-muted">
           {links.map((l) => (

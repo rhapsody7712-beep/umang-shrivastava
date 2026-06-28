@@ -4,6 +4,7 @@
 export const site = {
   name: "Umang Shrivastava",
   shortName: "Rock",
+  navMark: { monogram: "US", suffix: "Arch · TPM · PM" },
   role: "Principal Privacy Architect & Group TPM",
   org: "T-Mobile USA",
   tagline:
