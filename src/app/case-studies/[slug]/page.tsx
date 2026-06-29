@@ -56,10 +56,17 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
   return (
     <div className="max-w-[760px] mx-auto px-7 py-20">
       <Reveal>
-        <span className="font-mono text-[11px] text-accent tracking-wide">{study.ref}</span>
-        <h1 className="font-display font-bold text-[clamp(28px,4vw,40px)] mt-3 mb-4">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="font-mono text-[10px] tracking-widest text-accent border border-accent/40 px-2.5 py-1 rounded-[2px]">
+            {study.category}
+          </span>
+        </div>
+        <h1 className="font-display font-bold text-[clamp(28px,4vw,40px)] mb-3">
           {study.title}
         </h1>
+        <p className="font-mono text-[12px] text-muted-2 italic mb-4">
+          {study.role} · {study.period}
+        </p>
         <p className="text-muted text-[16px] mb-10">{study.oneLiner}</p>
       </Reveal>
 
