@@ -14,6 +14,7 @@ export interface CaseStudy {
   tradeoffs: string[];
   results: { value: string; label: string }[];
   lessons: string[];
+  shipped?: { label: string; url: string; note?: string };
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -60,6 +61,10 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "dsr-platform",
+    shipped: {
+      label: "T-Mobile Personal Data Request Portal",
+      url: "https://www.t-mobile.com/privacy-center/personal-data-request.html",
+    },
     ref: "REF — DSR",
     category: "IDENTITY & AI",
     role: "Group TPM & Principal Enterprise Architect",
@@ -143,6 +148,10 @@ export const caseStudies: CaseStudy[] = [
       "Would invest in deeper investigation beyond A/B testing and POC when novel technology is introduced — the Adobe-based webpage stack had integration edge cases not caught until late in the cycle",
       "The default opt-in / opt-out strategy for different consent types is the highest-leverage decision in any AdTech-adjacent privacy build — get Legal alignment on it at the very start, not mid-program",
     ],
+    shipped: {
+      label: "T-Mobile Privacy Center Dashboard",
+      url: "https://www.t-mobile.com/privacy-center/dashboard",
+    },
   },
   {
     slug: "ecpc",
@@ -219,5 +228,10 @@ export const caseStudies: CaseStudy[] = [
     lessons: [
       "PERSONALIZE: one thing you'd do differently on SyncUp Pets",
     ],
+    shipped: {
+      label: "SyncUp Pets — T-Mobile IoT",
+      url: "https://www.t-mobile.com",
+      note: "Product discontinued",
+    },
   },
 ];

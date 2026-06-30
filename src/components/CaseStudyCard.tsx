@@ -33,6 +33,13 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
           </div>
         ))}
       </div>
+      {study.shipped && !study.shipped.note && (
+        <div className="mt-4 pt-3 border-t border-line">
+          <span className="font-mono text-[10.5px] text-accent">
+            ↗ Shipped · {study.shipped.label}
+          </span>
+        </div>
+      )}
     </Link>
   );
 }

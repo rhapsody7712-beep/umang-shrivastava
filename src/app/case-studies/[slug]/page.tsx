@@ -98,6 +98,27 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
         </Block>
 
         <ListBlock label="Lessons learned" items={study.lessons} />
+
+        {study.shipped && (
+          <div className="mt-10 border border-line rounded-[3px] p-5 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <span className="font-mono text-[10px] text-muted-2 uppercase tracking-wide block mb-1">
+                {study.shipped.note ?? "Shipped · live in production"}
+              </span>
+              <span className="font-display text-[15px]">{study.shipped.label}</span>
+            </div>
+            {!study.shipped.note && (
+              <a
+                href={study.shipped.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[12px] px-4 py-2.5 border border-accent text-accent rounded-[3px] hover:bg-accent hover:text-[#1a1306] transition-colors whitespace-nowrap"
+              >
+                View live ↗
+              </a>
+            )}
+          </div>
+        )}
       </Reveal>
     </div>
   );
