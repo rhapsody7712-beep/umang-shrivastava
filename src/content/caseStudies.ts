@@ -103,41 +103,45 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: "privacy-dashboard",
     ref: "REF — DASHBOARD",
-    category: "PRODUCT & PLATFORM",
+    category: "ADTECH & DATA MONETIZATION",
     role: "Lead Architect & TPM",
     period: "T-Mobile USA · 2022–Present",
-    title: "Privacy Dashboard & Project Genius Portfolio",
+    title: "Privacy Dashboard & Data Monetization Platform",
     oneLiner:
-      "Launched a $15M+ consumer-facing privacy dashboard that turned consent management into a $300M+ revenue lever — 18% opt-in vs. a 10% KPI — while leading the broader $40M+ Project Genius portfolio.",
+      "Architected the consent and signal infrastructure that enables T-Mobile's $4B+ advertising business — positioning privacy not as a compliance cost but as the foundation of a legally defensible, scalable revenue model.",
     problem:
-      "Consent UX is usually built to satisfy a legal requirement, not to be used — and that shows up as low opt-in and zero revenue return. T-Mobile needed a privacy experience that was genuinely useful to subscribers while clearing a hard compliance deadline.",
+      "T-Mobile's advertising business was constrained by an inability to demonstrate legally defensible consent at scale. Without audited consent signals, GPC/DNT compliance, and the right opt-in defaults, the entire AdTech stack sat on shaky legal ground — limiting what the business could sell to advertisers.",
     context:
-      "Lead Architect and TPM for the $15M+ Privacy Dashboard enabling transparent consent management and self-service data controls for millions of T-Mobile customers. Simultaneously led the broader $40M+ Project Genius portfolio, managing 6 Senior Architects and boosting cross-team delivery productivity 25% through structured OKR governance and executive reporting.",
+      "Lead Architect and TPM for the $15M+ Privacy Dashboard enabling transparent consent management and self-service data controls for millions of T-Mobile customers. Partnered with the Adobe Experience Platform team to instrument AEP Tags and Adobe Analytics, audit GPC and DNT signal handling, and establish the consent signal layer the advertising business reads from. Simultaneously led the broader $40M+ Project Genius portfolio, managing 6 Senior Architects and boosting cross-team delivery productivity 25% through structured OKR governance.",
     constraints: [
-      "Had to clear a hard KPI (10% opt-in) while staying genuinely consent-first, not dark-pattern-driven",
-      "FCC consent decree deadline — non-negotiable compliance date",
-      "Single UI/UX had to serve 3 T-Mobile brands, each with a different IAM",
+      "Had to clear a hard opt-in KPI (10%) while staying consent-first — dark patterns would have created regulatory exposure that outweighed any short-term revenue gain",
+      "FCC consent decree deadline — non-negotiable compliance date that set the delivery sequence",
+      "Single UI/UX had to serve 3 T-Mobile brands, each with a different IAM service",
+      "GPC and DNT signals had to be correctly read, honored, and auditable — any gap would block the advertising business from operating in regulated markets",
     ],
     architecture:
-      "PrES middleware services orchestrated consent writes to two backends: Customer DB and Network DB. Sprint-related consents published asynchronously to Customer DB; Kafka streamed those onward to Ads systems. Network DB consents propagated to Ads systems via batch files. A single UI/UX served all 3 T-Mobile brands despite each running a different IAM service, with an authorization interface to verify that a line is permitted to manage consents on behalf of other lines (PAH scenarios). Initially designed around eventual consistency between Customer DB and Network DB, but fell back to a synchronous interface calling both systems because caching wasn't available in time.",
+      "PrES middleware services orchestrated consent writes to Customer DB and Network DB. Sprint-related consents published asynchronously to Customer DB; Kafka streamed consent signals onward to Ads systems. Network DB consents propagated to Ads systems via batch files. Adobe Experience Platform Tags instrumented across the consent surface — AEP and Adobe Analytics integration validated for signal fidelity. GPC and DNT signals read, honored, and audited end-to-end. A single UI/UX served all 3 T-Mobile brands despite different IAM services per brand, with a PAH authorization interface for line-level consent management. Initially designed around eventual consistency between Customer DB and Network DB; fell back to synchronous dual-DB writes when caching didn't land in time.",
     decisions: [
-      "Explicitly scoped out Do Not Sell and Kids line (COPPA) legacy experiences — backend integrations and compliance assessments couldn't be completed within the timeline, scoping out was safer than rushing",
-      "Scoped out Limit The Use consents and full Assisted Channel functionality — neither moved the needle on the FCC consent decree deadline, and the cost and complexity would have put the whole launch at risk",
-      "Changed the UI/UX mid-program when cookie values were found not to propagate correctly from DuckDuckGo and Safari — caught during testing rather than in production",
+      "Worked with Legal to establish Analytics and Insights as default opt-in — this is the decision that makes the advertising business viable at scale without being deceptive",
+      "Positioned DNSS (Do Not Share/Sell) as a hyperlink rather than a prominent toggle — meets the legal requirement without foregrounding an opt-out that would suppress the consented advertising pool",
+      "Kept targeted and personalized ads as default opt-out — preserved subscriber trust and regulatory defensibility, which is what makes the opted-in pool valuable to advertisers in the first place",
+      "Audited GPC and DNT signal propagation through the full AdTech stack — ensured the advertising business could demonstrate compliance to regulators and brand partners",
+      "Changed the UI/UX mid-program when cookie values were found not to propagate correctly from DuckDuckGo and Safari — caught during testing, not in production",
     ],
     tradeoffs: [
+      "Default opt-out for targeted ads reduced the addressable audience size — the right tradeoff because a smaller, genuinely-consented pool commands better CPMs and carries no regulatory tail risk",
       "Fell back from eventual consistency to synchronous dual-DB writes when caching didn't land in time — accepted latency cost to preserve correctness at launch",
-      "Descoping Assisted Channel in full form and carrying legacy flows meant leaving work on the table, but was the right call to hit the compliance deadline without introducing unvetted integrations",
+      "Scoped out Assisted Channel in full form — correct call to hit the compliance deadline; left incremental revenue on the table but avoided unvetted integrations that could have created consent signal gaps",
     ],
     results: [
-      { value: "$15M+", label: "privacy dashboard investment" },
+      { value: "$4B+", label: "T-Mobile ad business enabled" },
       { value: "18%", label: "consent opt-in vs. 10% KPI" },
-      { value: "$300M+", label: "ad revenue enabled" },
-      { value: "25%", label: "delivery productivity lift" },
+      { value: "$300M+", label: "incremental ad revenue" },
       { value: "$40M+", label: "Project Genius portfolio" },
     ],
     lessons: [
       "Would invest in deeper investigation beyond A/B testing and POC when novel technology is introduced — the Adobe-based webpage stack had integration edge cases not caught until late in the cycle",
+      "The default opt-in / opt-out strategy for different consent types is the highest-leverage decision in any AdTech-adjacent privacy build — get Legal alignment on it at the very start, not mid-program",
     ],
   },
   {

@@ -8,9 +8,9 @@ export const site = {
   role: "Principal Privacy Architect & Group TPM",
   org: "T-Mobile USA",
   tagline:
-    "Building the systems that decide what 120M+ people's data is allowed to do.",
+    "Building the consent and data infrastructure that protects 120M+ people — and enables a $4B+ advertising business.",
   positioning:
-    "I run point on both sides of the table — architecting the data-rights and consent platforms, and delivering them as a TPM across 35+ teams. Most people pick one lane. I work the seam between them.",
+    "I run point on both sides of the table — architecting the data-rights, consent, and monetization platforms, and delivering them as a TPM across 35+ teams. Most people pick one lane. I work the seam between privacy, AdTech, and data monetization.",
   // PERSONALIZE: replace with your real contact details before publishing.
   email: "umang.srivastava@gmail.com",
   linkedin: "https://www.linkedin.com/in/umangshrivastav/",
@@ -27,6 +27,7 @@ export const targetRoles = [
   "Director of Product",
   "Director of Engineering",
   "Privacy Product Manager",
+  "Data Monetization & AdTech PM",
   "AI Platform Product Manager",
   "Enterprise Architecture Leadership",
 ];
