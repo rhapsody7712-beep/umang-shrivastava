@@ -99,6 +99,25 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
 
         <ListBlock label="Lessons learned" items={study.lessons} />
 
+        {study.images && study.images.length > 0 && (
+          <div className="mb-9">
+            <span className="font-mono text-[11px] text-muted-2 tracking-wide uppercase block mb-4">
+              Product screenshots
+            </span>
+            <div className="flex flex-col gap-4">
+              {study.images.map((src, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={i}
+                  src={src}
+                  alt={`${study.title} screenshot ${i + 1}`}
+                  className="w-full border border-line rounded-[3px] object-cover"
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         {study.shipped && (
           <div className="mt-10 border border-line rounded-[3px] p-5 flex items-center justify-between gap-4 flex-wrap">
             <div>

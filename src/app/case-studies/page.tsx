@@ -15,7 +15,7 @@ export default function CaseStudiesPage() {
         <span className="font-mono text-[11px] text-muted-2 tracking-wide">FIG. 01</span>
         <h1 className="font-display font-semibold text-[clamp(24px,3vw,32px)]">Case studies</h1>
       </div>
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="flex flex-col gap-5">
         {caseStudies.map((s, i) => (
           <Reveal key={s.slug} delay={i * 0.06}>
             <CaseStudyCard study={s} />
