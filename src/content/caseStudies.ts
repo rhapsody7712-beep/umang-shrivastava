@@ -15,8 +15,6 @@ export interface CaseStudy {
   results: { value: string; label: string }[];
   lessons: string[];
   shipped?: { label: string; url: string; note?: string };
-  image?: string;       // hero image for the listing card (path from /public)
-  images?: string[];    // gallery images for the detail page
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -67,8 +65,6 @@ export const caseStudies: CaseStudy[] = [
       label: "T-Mobile Personal Data Request Portal",
       url: "https://www.t-mobile.com/privacy-center/personal-data-request.html",
     },
-    image: "/images/dsr-sso.png",
-    images: ["/images/dsr-sso.png", "/images/dsr-multi-persona.png"],
     ref: "REF — DSR",
     category: "IDENTITY & AI",
     role: "Group TPM & Principal Enterprise Architect",
@@ -156,8 +152,6 @@ export const caseStudies: CaseStudy[] = [
       label: "T-Mobile Privacy Center Dashboard",
       url: "https://www.t-mobile.com/privacy-center/dashboard",
     },
-    image: "/images/dashboard.png",
-    images: ["/images/dashboard.png"],
   },
   {
     slug: "ecpc",
