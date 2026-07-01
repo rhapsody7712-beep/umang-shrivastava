@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { caseStudies } from "@/content/caseStudies";
 import { Reveal } from "@/components/Reveal";
 
@@ -106,13 +107,15 @@ export default function CaseStudyPage({ params }: { params: { slug: string } }) 
             </span>
             <div className="flex flex-col gap-4">
               {study.images.map((src, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={i}
-                  src={src}
-                  alt={`${study.title} screenshot ${i + 1}`}
-                  className="w-full border border-line rounded-[3px] object-cover"
-                />
+                <div key={i} className="relative w-full aspect-video border border-line rounded-[3px] overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={`${study.title} screenshot ${i + 1}`}
+                    fill
+                    className="object-cover object-top"
+                    sizes="760px"
+                  />
+                </div>
               ))}
             </div>
           </div>

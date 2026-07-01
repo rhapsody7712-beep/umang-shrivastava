@@ -1,11 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { CaseStudy } from "@/content/caseStudies";
 
 export function CaseStudyCard({ study }: { study: CaseStudy }) {
   return (
     <Link
       href={`/case-studies/${study.slug}`}
-      className="group flex flex-col sm:flex-row border border-line bg-panel hover:border-accent transition-colors overflow-hidden min-h-[220px]"
+      className="group flex flex-col sm:flex-row border border-line bg-panel hover:border-accent transition-colors overflow-hidden"
     >
       {/* Left: content */}
       <div className="flex-1 p-7 flex flex-col justify-between min-w-0">
@@ -45,18 +46,19 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
       </div>
 
       {/* Right: screenshot or category panel */}
-      <div className="sm:w-[280px] lg:w-[340px] shrink-0 border-t sm:border-t-0 sm:border-l border-line overflow-hidden">
+      <div className="relative sm:w-[280px] lg:w-[340px] min-h-[180px] shrink-0 border-t sm:border-t-0 sm:border-l border-line overflow-hidden">
         {study.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <Image
             src={study.image}
             alt={study.title}
-            className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+            fill
+            className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
+            sizes="(max-width: 640px) 100vw, 340px"
           />
         ) : (
-          <div className="w-full h-full min-h-[160px] bg-panel flex items-center justify-center p-6">
+          <div className="w-full h-full absolute inset-0 bg-panel flex items-center justify-center p-6">
             <span className="font-mono text-[11px] tracking-widest text-muted-2 text-center leading-loose uppercase">
-              {study.category.split(" & ").join("\n& ")}
+              {study.category}
             </span>
           </div>
         )}
